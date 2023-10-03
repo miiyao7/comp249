@@ -1,33 +1,46 @@
 package Metro;
 import TrainAndTram.Train;
 public class Metro extends Train{
-	int nbOfStops;
-	private static long serialNb=25000;
+	private int nbOfStops;
+	private static long serialNb;
 	
 	public Metro() {
 		super();
 		nbOfStops = 0;
-		serialNb = getNextSerialNumber();
+		serialNb = 25000;
 	}
 	
-	public Metro(int inNbOfWheels, double inMaxSpeed, int inNbOfV, String inStartingStation, String inDestStationName, int inNbOfStops, long inSerialNb) {
-		super(inNbOfWheels, inMaxSpeed, inNbOfV, inStartingStation, inDestStationName, 0);
+	public Metro(int inNbOfWheels, double inMaxSpeed, int inNbOfV, String inStartingStation, String inDestStationName, int inNbOfStops) {
+		super(inNbOfWheels, inMaxSpeed, inNbOfV, inStartingStation, inDestStationName);
 		nbOfStops = inNbOfStops;
-		serialNb= getNextSerialNumber();
+		serialNb= 25000;
 	}
 	public Metro(Metro otherMetro) {
 		super(otherMetro);
 		this.nbOfStops = otherMetro.nbOfStops;
-		this.serialNb = getNextSerialNumber();
+		serialNb = getNextSerialNumber();
 	}
 	
-	public static long getNextSerialNumber() {
-		serialNb = 2500;
+	// getters method
+	public double getNbOfStops() {
+		return nbOfStops;
+	}
+	public long getSerialNb() {
 		return serialNb;
 	}
+// setter method
+	public void setNbOfStops(int inNbOfStops) {
+		nbOfStops = inNbOfStops;
+	}
+	public void setSerialNb(int inSerialNb) {
+		serialNb = inSerialNb;
+	}
+//	@override
+	public long getNextSerialNumber() {
+		return serialNb++;
+	}
 	public String toString() {
-		return super.toString() + serialNb + trial();
+		return super.toString();
 				}
 }
-
 

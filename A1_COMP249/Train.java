@@ -6,21 +6,22 @@ public class Train extends WheeledTransportation {
 	private int nbOfV;
 	private String startingStation;
 	private String destStationName;
-	private static long serialNb=1000;
+	private static long serialNb;
 
 	public Train() {
 		super();
-		nbOfV = 0;
-		startingStation = "";
-		serialNb = WheeledTransportation.getNextSerialNumber();
+		this.nbOfV = 0;
+		this.startingStation = "";
+		this.destStationName = "";
+		serialNb = 1000;
 	}
 	
-	public Train(int inNbOfWheels, double inMaxSpeed, int inNbOfV, String inStartingStation, String inDestStationName, long inSerialNb) {
-		super(inNbOfWheels, inMaxSpeed, inSerialNb);
+	public Train(int inNbOfWheels, double inMaxSpeed, int inNbOfV, String inStartingStation, String inDestStationName) {
+		super(inNbOfWheels, inMaxSpeed);
 		this.nbOfV = inNbOfV;
 		this.startingStation = inStartingStation;
 		this.destStationName = inDestStationName;
-		this.serialNb = WheeledTransportation.getNextSerialNumber();
+		serialNb = 1000;
 	}
 	
 	public Train(Train otherTrain) {
@@ -28,19 +29,37 @@ public class Train extends WheeledTransportation {
 		this.nbOfV = otherTrain.nbOfV;
 		this.startingStation = otherTrain.startingStation;
 		this.destStationName = otherTrain.destStationName;
-		this.serialNb = WheeledTransportation.getNextSerialNumber();
+		serialNb = getNextSerialNumber();
 	}
 	
-	public static long getNextSerialNumber() {
-		serialNb = 1000;
-		return serialNb;
-	}
-	public String trial() {
-		return "train";
+	// getters method
+		public String getStartingStation() {
+			return startingStation;
+		}
+		public String getDestStationName() {
+			return destStationName;
+		}
+		public long getSerialNb() {
+			return serialNb;
+		}
+	// setter method
+		public void setStartingStation(String inStartingStation) {
+			startingStation = inStartingStation;
+		}
+		public void setDestStationName(String inDestStationName) {
+			destStationName = inDestStationName;
+		}
+		public void setSerialNb(int inSerialNb) {
+			serialNb = inSerialNb;
+		}
+
+//	@override
+	public long getNextSerialNumber() {
+		return serialNb++;
 	}
 	
 	public String toString() {
-		return super.toString();
+		return super.toString() + " and its starting destination are " + startingStation + " and " + destStationName;
 				}
 	
 }
