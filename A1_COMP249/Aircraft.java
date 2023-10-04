@@ -3,18 +3,18 @@ package Aircraft;
 public class Aircraft {
 private double price;
 private double maxElevation;
-private static long serialNb;
+private long serialNb;
 
 	public Aircraft() {
 		price = 0;
 		maxElevation = 0;
-		serialNb = 0;
+		serialNb = getNextSerialNumber();
 	}
 	
 	public Aircraft(double inPrice, double inMaxElevation) {
 		this.price = inPrice;
 		this.maxElevation = inMaxElevation;
-		serialNb = 0;
+		serialNb = getNextSerialNumber();
 	}
 	
 	public Aircraft(Aircraft otherAircraft) {
@@ -44,12 +44,17 @@ private static long serialNb;
 			serialNb = inSerialNb;
 		}
 		
+		
+	private static long nextSerialNb=1;
+		
 //	@override
 	public long getNextSerialNumber() {
-		return serialNb++;
+		return nextSerialNb++;
 	}
+	
+	
 	public String toString() {
-		return super.toString();
+		return "This " + this.getClass().getSimpleName() + " - serial #" + serialNb + " - is $" + price + ", has a maximum elevation of " + maxElevation + " .";
 				}
 	public boolean equals(Aircraft object) {
 		if(object == null || getClass() != object.getClass()) {
