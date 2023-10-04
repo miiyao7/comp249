@@ -61,5 +61,18 @@ public class Train extends WheeledTransportation {
 	public String toString() {
 		return super.toString() + " and its starting destination are " + startingStation + " and " + destStationName;
 				}
+	public boolean equals(Train object) {
+		if(object == null || getClass() != object.getClass()) {
+			return false;
+		}
+		else if (!super.equals(object)) {
+			return false;
+		}
+		if(this.nbOfV == object.nbOfV && this.startingStation == object.startingStation && this.destStationName == object.destStationName) {
+			return true;
+		}
+		else
+			return false;
+	}
 	
 }
