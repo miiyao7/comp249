@@ -3,18 +3,18 @@ package WheeledTransportation;
 public class WheeledTransportation {
 	private int nbOfWheels;
 	private double maxSpeed;
-	private static long serialNb = 1;
+	private long serialNb;
 // default constructor	
 	public WheeledTransportation() {
 		nbOfWheels = 0;
 		maxSpeed = 0;
-		serialNb = 1;
+		serialNb = getNextSerialNumber();
 	}
 // parameterized constructor	
 	public WheeledTransportation(int inNbOfWheels, double inMaxSpeed) {
 		nbOfWheels = inNbOfWheels;
 		maxSpeed = inMaxSpeed;
-		serialNb = 1;
+		serialNb = getNextSerialNumber();
 	}
 // copy constructor
 	public WheeledTransportation(WheeledTransportation anotherWheeledTransportation) {
@@ -44,9 +44,12 @@ public class WheeledTransportation {
 		serialNb = inSerialNb;
 	}
 
+	
+	private static long nextSerialNb=1;
+	
 // custom method	
 	public long getNextSerialNumber() {
-		return serialNb++;
+		return nextSerialNb++;
 	}
 // override methods
 	public String toString() {
