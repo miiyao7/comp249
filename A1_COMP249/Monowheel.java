@@ -3,17 +3,15 @@ import WheeledTransportation.WheeledTransportation;
 
 public class Monowheel extends WheeledTransportation{
 	private double maxWeight;
-	private static long serialNb;
+	private long serialNb;
 	
 	public Monowheel() {
 		super();
 		maxWeight = 0;
-		serialNb = 55000;
 	}
 	public Monowheel(int inNbOfWheels, double inMaxSpeed, double inMaxWeight) {
 		super(inNbOfWheels,inMaxSpeed);
 		this.maxWeight = inMaxWeight;
-		serialNb = 55000;
 	}
 	public Monowheel(Monowheel otherMonowheel) {
 		super(otherMonowheel);
@@ -35,10 +33,12 @@ public class Monowheel extends WheeledTransportation{
 		public void setSerialNb(int inSerialNb) {
 			serialNb = inSerialNb;
 		}
-		
+	
+private static long nextSerialNb 55000;
+	
 //	@override
 	public long getNextSerialNumber() {
-		return serialNb++;
+		return nextSerialNb++;
 	}
 	public String toString() {
 		return super.toString();
