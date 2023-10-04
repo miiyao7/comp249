@@ -3,18 +3,16 @@ import Metro.Metro;
 
 public class Tram extends Metro{
 private int yearCreation;
-private static long serialNb;
+private long serialNb;
 
 
 	public Tram() {
 		super();
 		yearCreation = 0;
-		serialNb = 30000;
 	}
 	public Tram(int inNbOfWheels, double inMaxSpeed, int inNbOfV, String inStartingStation, String inDestStationName, int inNbOfStops, int inYearCreation) {
 		super(inNbOfWheels, inMaxSpeed, inNbOfV, inStartingStation, inDestStationName, inNbOfStops);
 		this.yearCreation = inYearCreation;
-		serialNb = 30000;
 	}
 	public Tram(Tram otherTram) {
 		super(otherTram);
@@ -36,10 +34,12 @@ private static long serialNb;
 	public void setSerialNb(int inSerialNb) {
 		serialNb = inSerialNb;
 	}
-	
+
+private static long nextSerialNb = 30000;
+
 //	@override
 	public long getNextSerialNumber() {
-		return serialNb++;
+		return nextSerialNb++;
 	}
 	public String toString() {
 		return super.toString();
