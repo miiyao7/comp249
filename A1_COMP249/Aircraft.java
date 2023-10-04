@@ -51,4 +51,14 @@ private static long serialNb;
 	public String toString() {
 		return super.toString();
 				}
+	public boolean equals(Aircraft object) {
+		if(object == null || getClass() != object.getClass()) {
+			return false;
+		}
+		else if (this.maxElevation == object.maxElevation && this.price == object.price) {
+			return true;
+		}
+		else 
+			return false;	 
+	}
 }
