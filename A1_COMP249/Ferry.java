@@ -3,18 +3,18 @@ package Ferry;
 public class Ferry {
 	private double maxSpeed;
 	private double maxLoad;
-	private static long serialNb;
+	private long serialNb;
 	
 	public Ferry() {
 		maxSpeed = 0;
 		maxLoad = 0;
-		serialNb = 70000;
+		serialNb = getNextSerialNumber();
 	}
 	
 	public Ferry(double inMaxSpeed, double inMaxLoad) {
 		this.maxSpeed = inMaxSpeed;
 		this.maxLoad = inMaxLoad;
-		serialNb = 70000;
+		serialNb = getNextSerialNumber();
 	}
 	
 	public Ferry(Ferry otherFerry) {
@@ -43,14 +43,15 @@ public class Ferry {
 	public void setSerialNb(int inSerialNb) {
 		serialNb = inSerialNb;
 	}
-	
+
+	private static long nextSerialNb = 70000;
 	
 //	@override
 	public long getNextSerialNumber() {
-		return serialNb++;
+		return nextSerialNb++;
 	}
 	public String toString() {
-		return super.toString();
+		return "This " + this.getClass().getSimpleName() + " - serial #" + serialNb + " - has a maximum speed of " + maxSpeed + " km/hr, has a maximum load of " + maxLoad + " kg.";
 				}
 	public boolean equals(Ferry object) {
 		if(object == null || getClass() != object.getClass()) {
