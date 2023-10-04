@@ -2,18 +2,16 @@ package Metro;
 import TrainAndTram.Train;
 public class Metro extends Train{
 	private int nbOfStops;
-	private static long serialNb;
+	private long serialNb;
 	
 	public Metro() {
 		super();
 		nbOfStops = 0;
-		serialNb = 25000;
 	}
 	
 	public Metro(int inNbOfWheels, double inMaxSpeed, int inNbOfV, String inStartingStation, String inDestStationName, int inNbOfStops) {
 		super(inNbOfWheels, inMaxSpeed, inNbOfV, inStartingStation, inDestStationName);
 		nbOfStops = inNbOfStops;
-		serialNb= 25000;
 	}
 	public Metro(Metro otherMetro) {
 		super(otherMetro);
@@ -35,25 +33,14 @@ public class Metro extends Train{
 	public void setSerialNb(int inSerialNb) {
 		serialNb = inSerialNb;
 	}
+	
+	private static long nextSerialNb=25000;
+	
 //	@override
 	public long getNextSerialNumber() {
-		return serialNb++;
+		return nextSerialNb++;
 	}
 	public String toString() {
 		return super.toString();
 				}
-	public boolean equals(Metro object) {
-		if(object == null || getClass() != object.getClass()) {
-			return false;
-		}
-		else if (!super.equals(object)) {
-			return false;
-		}
-		if(this.nbOfStops == object.nbOfStops ) {
-			return true;
-		}
-		else
-			return false;
-	}
 }
-
