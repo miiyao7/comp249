@@ -42,5 +42,18 @@ public class Metro extends Train{
 	public String toString() {
 		return super.toString();
 				}
+	public boolean equals(Metro object) {
+		if(object == null || getClass() != object.getClass()) {
+			return false;
+		}
+		else if (!super.equals(object)) {
+			return false;
+		}
+		if(this.nbOfStops == object.nbOfStops ) {
+			return true;
+		}
+		else
+			return false;
+	}
 }
 
