@@ -44,4 +44,17 @@ public class WW2Aircraft extends Aircraft {
 	public String toString() {
 		return super.toString();
 				}
+	public boolean equals(WW2Aircraft object) {
+		if(object == null || getClass() != object.getClass()) {
+			return false;
+		}
+		else if (!super.equals(object)) {
+			return false;
+		}
+		if(this.twinEngine == object.twinEngine ) {
+			return true;
+		}
+		else
+			return false;
+	}
 }
