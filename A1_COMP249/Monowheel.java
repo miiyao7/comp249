@@ -43,5 +43,18 @@ public class Monowheel extends WheeledTransportation{
 	public String toString() {
 		return super.toString();
 				}
+	public boolean equals(Tram object) {
+		if(object == null || getClass() != object.getClass()) {
+			return false;
+		}
+		else if (!super.equals(object)) {
+			return false;
+		}
+		if(this.maxWeight == object.maxWeight ) {
+			return true;
+		}
+		else
+			return false;
+	}
 	
 }
