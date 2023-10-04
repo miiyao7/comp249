@@ -52,4 +52,14 @@ public class Ferry {
 	public String toString() {
 		return super.toString();
 				}
+	public boolean equals(Ferry object) {
+		if(object == null || getClass() != object.getClass()) {
+			return false;
+		}
+		else if (this.maxSpeed == object.maxSpeed && this.maxLoad == object.maxLoad) {
+			return true;
+		}
+		else 
+			return false;	 
+	}
 }
