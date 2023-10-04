@@ -2,18 +2,16 @@ package Aircraft;
 
 public class WW2Aircraft extends Aircraft {
 	private boolean twinEngine;
-	private static long serialNb;
+	private long serialNb;
 	
 	public WW2Aircraft() {
 		super();
 		twinEngine = false;
-		serialNb = 80000;
 	}
 	
 	public WW2Aircraft(double inPrice, double inMaxElevation, boolean inTwinEngine) {
 		super(inPrice, inMaxElevation);
 		this.twinEngine = inTwinEngine;
-		serialNb = 80000;
 	}
 	
 	public WW2Aircraft(WW2Aircraft otherWW2Aircraft) {
@@ -36,10 +34,11 @@ public class WW2Aircraft extends Aircraft {
 		public void setSerialNb(int inSerialNb) {
 			serialNb = inSerialNb;
 		}
-		
+private static long nextSerialNb = 80000;
+	
 //	@override
 	public long getNextSerialNumber() {
-		return serialNb++;
+		return nextSerialNb++;
 	}
 	public String toString() {
 		return super.toString();
