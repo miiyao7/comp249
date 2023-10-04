@@ -53,7 +53,7 @@ public class WheeledTransportation {
 	}
 // override methods
 	public String toString() {
-		return "This " + this.getClass().getSimpleName() + " - serial #" + getNextSerialNumber() + " - has " + nbOfWheels + " wheels, has a maximum speed of " + maxSpeed + " km/hr.";
+		return "This " + this.getClass().getSimpleName() + " - serial #" + serialNb + " - has " + nbOfWheels + " wheels, has a maximum speed of " + maxSpeed + " km/hr.";
 	}
 	public boolean equals(WheeledTransportation object) {
 		if(object == null || getClass() != object.getClass()) {
