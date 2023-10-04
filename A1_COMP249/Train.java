@@ -6,14 +6,14 @@ public class Train extends WheeledTransportation {
 	private int nbOfV;
 	private String startingStation;
 	private String destStationName;
-	private static long serialNb;
+	private long serialNb;
 
 	public Train() {
 		super();
 		this.nbOfV = 0;
 		this.startingStation = "";
 		this.destStationName = "";
-		serialNb = 1000;
+		serialNb = getNextSerialNumber();
 	}
 	
 	public Train(int inNbOfWheels, double inMaxSpeed, int inNbOfV, String inStartingStation, String inDestStationName) {
@@ -21,7 +21,7 @@ public class Train extends WheeledTransportation {
 		this.nbOfV = inNbOfV;
 		this.startingStation = inStartingStation;
 		this.destStationName = inDestStationName;
-		serialNb = 1000;
+		serialNb = getNextSerialNumber();
 	}
 	
 	public Train(Train otherTrain) {
@@ -53,6 +53,8 @@ public class Train extends WheeledTransportation {
 			serialNb = inSerialNb;
 		}
 
+		private static long nextSerialNb=1000;
+		
 //	@override
 	public long getNextSerialNumber() {
 		return serialNb++;
