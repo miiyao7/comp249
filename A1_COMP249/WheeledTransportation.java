@@ -60,6 +60,16 @@ public class WheeledTransportation {
 	public String toString() {
 		return "This " + this.getClass().getSimpleName() + " - serial #" + getNextSerialNumber() + " - has " + nbOfWheels + ", has a maximum speed of " + maxSpeed + " km/hr. It has " + nbCreated + " vehicles";
 	}
+	public boolean equals(WheeledTransportation object) {
+		if(object == null || getClass() != object.getClass()) {
+			return false;
+		}
+		else if (this.maxSpeed == object.maxSpeed && this.nbOfWheels == object.nbOfWheels) {
+			return true;
+		}
+		else 
+			return false;	 
+	}
 	
 	
 }
