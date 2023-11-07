@@ -80,8 +80,8 @@ public class driver {
 			for (int n = 0; n < nbOfLines; n++) {// for loop to iterate through csvFileName array
 			// create buffered reader to read the data from the csv file
 			BufferedReader csvReader = 
-					new BufferedReader(new FileReader("src/a2_comp249/"+csvFileName[n]));
-				//	new BufferedReader(new FileReader("src/a2_comp249/books1998.csv.txt"));
+				//	new BufferedReader(new FileReader("src/a2_comp249/"+csvFileName[n]));
+					new BufferedReader(new FileReader("src/a2_comp249/books1998.csv.txt"));
 			
 			// FOR VERIFICATION PURPOSES 
 			// String nameCSV =( csvFileName[n]+".csv");
@@ -100,12 +100,77 @@ public class driver {
 					int count = 1;
 					csvData[x] = csvDataLine;
 					System.out.println("\n"+csvDataLine); //display the elements of the file.csv.txt !!delete later!! THIS WORKS
+					if(csvDataLine.contains("\"")) {
+						int q1 = csvDataLine.indexOf("\"");
+						int q2 = csvDataLine.lastIndexOf("\"");
+						String quottedString = csvDataLine.substring(q1,q2+1); 
+						//// remove all commas from quotted strings
+						String removedCommas = quottedString.replaceAll(",", "");
+						System.out.println(removedCommas);
+						csvData[x] = removedCommas;
+					}
+					else {
+						csvData[x] = csvDataLine;
+					}
 					
-					csvDataArray = csvDataLine.split(",");
+					csvDataArray = csvData[x].split(",");
+					
+					int cfLength = arrayLength(csvDataArray); // csvFormatted length
+					 System.out.println(cfLength);
+					
+					        if(cfLength > 6) { // too many fields
+								System.out.println(csvDataLine);
+								System.out.println("Too many fields.");
+								
+							}
+					        else if(cfLength  == 6) { 
+					        	for(int i = 0 ; i < cfLength; i++) {
+					        		if (csvFormatted[i] == "") { 
+					        			System.out.println(csvData[x]);
+					        			System.out.println("Missing Field.");
+					        		}
+					        	}
+					        	if(checkGenre(csvFormatted[4]) == false) {
+					        		System.out.println(csvData[x]);
+					        		System.out.println("Unknown genre."); // THIS WORKS
+					        	} 
+					        	
+					        	else {
+					        		//System.out.println(csvDataLine);
+						        	//System.out.println("yay!");
+					        	}
+					        }
+					        else if(cfLength < 6) { // too few fields
+					  
+					        		if (csvDataLine.endsWith(",")) { 
+					        			System.out.println(csvData[x]);
+					        			System.out.println("Missing Field (year)"); //THIS WORKS
+					        		}
+					        		else {
+					        			System.out.println(csvData[x]);
+										System.out.println("Too few fields."); // THIS SHOULD WORK
+					        		}
+							}	
+					        else {
+					        	//System.out.println(csvDataLine);
+					        	//System.out.println("yay!");
+					        	
+							}
+					
+					
+					
+				/*	csvDataArray = csvDataLine.split(",");
 					for ( int m = 0; m < csvDataArray.length ; m++) {
 						System.out.println(csvDataArray[m]);
 					}
-						
+				*/	
+					
+					
+					
+					
+					
+					
+				/*		
 							if (csvDataArray[0].startsWith("\"") && csvDataArray[1].endsWith("\"")) { //yes
 			                    count = 2;
 			                    csvFormatted[0]= csvDataArray[0] + csvDataArray[1];
@@ -127,9 +192,9 @@ public class driver {
 								csvFormatted[0] = csvDataArray[0];
 								doubleQuotes =false;
 							}		
+					*/
 					
-					
-					int index = count;
+				/*	int index = count;
 				//	System.out.println(doubleQuotes);
 					if (doubleQuotes == true ) {
 					for(int p = 1; p <= csvDataArray.length-count; p++) { // it should iterate 5 times
@@ -200,7 +265,7 @@ public class driver {
 					        	//System.out.println("yay!");
 					        	
 							}
-					 
+					 */
 					    /////////////////////////////////////////  WORKS TILL HERE
 					        x++;
 				}
