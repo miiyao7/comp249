@@ -79,7 +79,7 @@ public class driver {
 			// create buffered reader to read the data from the csv file
 			BufferedReader csvReader = 
 					new BufferedReader(new FileReader("src/comp249_a2/"+csvFileName[n]));
-				//	new BufferedReader(new FileReader("src/comp249_a2/books2003.csv.txt"));
+					//new BufferedReader(new FileReader("src/comp249_a2/books1995.csv.txt"));
 			
 			// FOR VERIFICATION PURPOSES 
 			 String nameCSV =( csvFileName[n]+".csv");
@@ -87,55 +87,81 @@ public class driver {
 			
 			// create an array that stores the data of each csv file
 			String[] csvData = new String[2000]; // max elements of 300 
-			String[] csvDataArray = new String[15];
-			String[] csvFormatted = new String[15];
+			String[] csvDataArray = new String[10];
+		//	String[] csvFormatted = new String[10];
+			String csvDataLine;
 			boolean doubleQuotes = false;
-			int count = 0;
-			int x = 0;
+			
+			int x = 0;	
 				
-				
-				while((csvData[x] = csvReader.readLine()) !=null && x <2000) { // if the next line is not null then continue
-					String csvDataLine = csvData[x] ;
-					
-				// System.out.println(csvDataLine); //display the elements of the file.csv.txt !!delete later!! THIS WORKS
-					
-				if(csvDataLine != null) {
+				while((csvDataLine = csvReader.readLine()) !=null && x < 2000) { // if the next line is not null then continue
+					int count = 1;
+					csvData[x] = csvDataLine;
+					//System.out.println(csvDataLine); //display the elements of the file.csv.txt !!delete later!! THIS WORKS
+					x++;
 					csvDataArray = csvDataLine.split(",");
+					System.out.println(csvDataArray[0]);	
+					System.out.println(csvDataArray[1]);	
+					System.out.println(csvDataArray[2]);	
+					System.out.println(csvDataArray[3]);	
+					System.out.println(csvDataArray[4]);	
+					System.out.println(csvDataArray[5]);	
+					System.out.println(csvDataArray[6]);
 					
-					csvFormatted[0] = csvDataArray[0];
-					
-					for(int i = 0; i<csvDataArray.length; i++) { // iterate through all the parts of csvDataArray
+					System.out.println(csvDataArray.length);
+						
 					for (int y = 0; y < csvDataArray.length; y++) { // iterate through all the parts of csvDataArray 
 							if (y==0 && csvDataArray[y].startsWith("\"") && csvDataArray[y+1].endsWith("\"")) { //yes
+			        
+			                    count = 2;
+			                    String[] csvFormatted = new String[csvDataArray.length - count];
 			                    csvFormatted[y] = csvDataArray[y] + csvDataArray[y+1];
 			                    doubleQuotes=true;
-			                    count = 2;
 			                    break;
 			                }
-							else if (y!=1 && csvDataArray[y].endsWith("\"")) { 
-								csvFormatted[0] += csvDataArray[y];
+							 if (y==0 && csvDataArray[y].startsWith("\"") && csvDataArray[y+2].endsWith("\"")) { 
+								 String[] csvFormatted = new String[csvDataArray.length - count];
+								csvFormatted[0] += csvDataArray[y+1] + csvDataArray[y+2];
 								count = 3;
 								doubleQuotes=true;
 								break;
 							}
 							else {
 								doubleQuotes =false;
-								continue;
+								break;
 							}		
 					}
 					
-						if (doubleQuotes == true ) {
-							csvFormatted[1] = csvDataArray[count];
+					
+					int index = count;
+					
+					if (doubleQuotes == true ) {
+					for(int p = 1; p <= csvDataArray.length-count; p++) { // it should iterate 5 times
+						if (csvDataArray[index] != null)
+					csvFormatted[p] = csvDataArray[index]; // 5
+					index++;
 						}
-						else {
-							csvFormatted[i] = csvDataArray[i];
+					
+					}
+					else {
+						for(int p = 1; p < csvDataArray.length-1; p++) { // it should iterate 5 times
+							csvFormatted[p] = csvDataArray[p]; 
 						}
-						
 					}
 					
+						System.out.println(csvFormatted[0]);	
+						System.out.println(csvFormatted[1]);	
+						System.out.println(csvFormatted[2]);	
+						System.out.println(csvFormatted[3]);	
+						System.out.println(csvFormatted[4]);	
+						System.out.println(csvFormatted[5]);
+						System.out.println(csvFormatted[6]);
+						System.out.println(csvFormatted[7]);
+						
 					// WORKS TILL HERE
 			
 					int cfLength = arrayLength(csvFormatted); // csvFormatted length
+					 System.out.println(cfLength);
 					
 					        if(cfLength > 6) { // too many fields
 								System.out.println(csvDataLine);
@@ -144,15 +170,19 @@ public class driver {
 							}
 					        else if(cfLength  == 6) { 
 					        	for(int i = 0 ; i < cfLength; i++) {
-					        		if (csvFormatted[i] == "") { // missing fields THIS WORK BUT THE END ONE
+					        		if (csvFormatted[i] == "") { 
 					        			System.out.println(csvDataLine);
 					        			System.out.println("Missing Field.");
 					        		}
 					        	}
 					        	if(checkGenre(csvFormatted[4]) == false) {
-				        			System.out.println(csvDataLine);
-				        			System.out.println("Unknown genre."); // THIS WORKS
-				        		}
+					        		System.out.println(csvDataLine);
+					        		System.out.println("Unknown genre."); // THIS WORKS
+					        	}
+					        	else {
+					        		System.out.println(csvDataLine);
+						        	System.out.println("yay!");
+					        	}
 					        }
 					        else if(cfLength < 6) { // too few fields
 					  
@@ -166,20 +196,18 @@ public class driver {
 					        		}
 							}	
 					        else {
-					        	//System.out.println(csvDataLine);
-					        	//System.out.println("yay!");
+					        	System.out.println(csvDataLine);
+					        	System.out.println("yay!");
 					        	
 							}
-			
 					 
 					    /////////////////////////////////////////  WORKS TILL HERE
 		
 				}
-				x++;
-	
-		}
 					csvReader.close(); // close the csvReader
+					
 			}
+			
 		} // try bracket
 			
 			
