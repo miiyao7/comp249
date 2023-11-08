@@ -34,7 +34,6 @@ public class driver {
 				continue;
 			}
 		}
-		System.out.println(n);
 		int count = array.length - n;
 		return count;
 	}
@@ -80,12 +79,12 @@ public class driver {
 			for (int n = 0; n < nbOfLines; n++) {// for loop to iterate through csvFileName array
 			// create buffered reader to read the data from the csv file
 			BufferedReader csvReader = 
-				//	new BufferedReader(new FileReader("src/a2_comp249/"+csvFileName[n]));
-					new BufferedReader(new FileReader("src/a2_comp249/books1998.csv.txt"));
+					new BufferedReader(new FileReader("src/a2_comp249/"+csvFileName[n]));
+				//	new BufferedReader(new FileReader("src/a2_comp249/books1998.csv.txt"));
 			
 			// FOR VERIFICATION PURPOSES 
-			// String nameCSV =( csvFileName[n]+".csv");
-			// System.out.println("\n"+nameCSV);
+			String nameCSV =( csvFileName[n]+".csv");
+			System.out.println("\n"+nameCSV);
 			
 			// create an array that stores the data of each csv file
 			String[] csvData = new String[2000]; // max elements of 300 
@@ -100,14 +99,14 @@ public class driver {
 					int count = 1;
 					csvData[x] = csvDataLine;
 					System.out.println("\n"+csvDataLine); //display the elements of the file.csv.txt !!delete later!! THIS WORKS
+					
 					if(csvDataLine.contains("\"")) {
 						int q1 = csvDataLine.indexOf("\"");
 						int q2 = csvDataLine.lastIndexOf("\"");
 						String quottedString = csvDataLine.substring(q1,q2+1); 
 						//// remove all commas from quotted strings
 						String removedCommas = quottedString.replaceAll(",", "");
-						System.out.println(removedCommas);
-						csvData[x] = removedCommas;
+						csvData[x] = removedCommas + csvDataLine.substring(q2+1);
 					}
 					else {
 						csvData[x] = csvDataLine;
@@ -116,7 +115,8 @@ public class driver {
 					csvDataArray = csvData[x].split(",");
 					
 					int cfLength = arrayLength(csvDataArray); // csvFormatted length
-					 System.out.println(cfLength);
+					
+					// System.out.println(cfLength);
 					
 					        if(cfLength > 6) { // too many fields
 								System.out.println(csvDataLine);
@@ -130,11 +130,10 @@ public class driver {
 					        			System.out.println("Missing Field.");
 					        		}
 					        	}
-					        	if(checkGenre(csvFormatted[4]) == false) {
+					        	if(checkGenre(csvDataArray[4]) == false) {
 					        		System.out.println(csvData[x]);
 					        		System.out.println("Unknown genre."); // THIS WORKS
-					        	} 
-					        	
+					        	}
 					        	else {
 					        		//System.out.println(csvDataLine);
 						        	//System.out.println("yay!");
