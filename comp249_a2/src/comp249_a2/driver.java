@@ -174,7 +174,7 @@ public class driver {
 		return csvDataArray;
 	}
 	
-	public static void syntaxHandling(String[] csvData, String nameCSV, String path) throws IOException {
+	public static void syntaxHandling(String[] csvData, String nameCSV) throws IOException {
 		
 	    FileWriter syntaxE = new FileWriter("src/a2_comp249/syntax_error_file.txt", true); // Append mode
 	    
@@ -438,10 +438,8 @@ public class driver {
 		  path = path + csvFileName[n];
 		  
 		  String[]csvData = readCSVFileData(path);
-		  
-		 
-		  
-		//  genreFile(csvData, csvFileName[n], path);
+		  syntaxHandling(csvData, csvFileName[n]);
+		  genreFile(csvData);
 		  
 		} 
 	}
@@ -476,7 +474,7 @@ public class driver {
 		  
 		  String[]csvGenreData = readCSVFileData(path);
 		  
-		  syntaxHandling( csvGenreData, genreName[n], path);
+	//	  syntaxHandling( csvGenreData, genreName[n], path);
 		  
 		} 
 	}
